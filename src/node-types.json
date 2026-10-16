@@ -2433,6 +2433,10 @@
         "required": true,
         "types": [
           {
+            "type": "field_expression",
+            "named": true
+          },
+          {
             "type": "field_identifier",
             "named": true
           }
@@ -4177,6 +4181,10 @@
   },
   {
     "type": "NULL",
+    "named": false
+  },
+  {
+    "type": "STDCALL",
     "named": false
   },
   {

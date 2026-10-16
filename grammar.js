@@ -339,6 +339,7 @@ module.exports = grammar({
       '__fastcall',
       '__thiscall',
       '__vectorcall',
+      'STDCALL',
     ),
 
     ms_restrict_modifier: _ => '__restrict',
@@ -1101,7 +1102,7 @@ module.exports = grammar({
 
     offsetof_expression: $ => prec(PREC.OFFSETOF, seq(
       'offsetof',
-      seq('(', field('type', $.type_descriptor), ',', field('member', $._field_identifier), ')'),
+      seq('(', field('type', $.type_descriptor), ',', field('member', choice($._field_identifier, $.field_expression)), ')'),
     )),
 
     generic_expression: $ => prec(PREC.CALL, seq(
@@ -1317,6 +1318,7 @@ module.exports = grammar({
     escape_sequence: _ => token(prec(1, seq(
       '\\',
       choice(
+        /\r?\n/,
         /[^xuU]/,
         /\d{2,3}/,
         /x[0-9a-fA-F]{1,4}/,
