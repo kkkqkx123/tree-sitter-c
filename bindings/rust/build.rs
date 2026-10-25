@@ -32,13 +32,11 @@ fn main() {
     c_config.compile("tree-sitter-c");
 
     println!("cargo:rustc-check-cfg=cfg(with_highlights_query)");
-    if std::path::Path::new("queries/highlights.scm").exists()
-    {
+    if std::path::Path::new("queries/highlights.scm").exists() {
         println!("cargo:rustc-cfg=with_highlights_query");
     }
     println!("cargo:rustc-check-cfg=cfg(with_injections_query)");
-    if std::path::Path::new("queries/injections.scm").exists()
-    {
+    if std::path::Path::new("queries/injections.scm").exists() {
         println!("cargo:rustc-cfg=with_injections_query");
     }
     println!("cargo:rustc-check-cfg=cfg(with_locals_query)");
